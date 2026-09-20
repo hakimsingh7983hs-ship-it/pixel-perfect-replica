@@ -16,6 +16,11 @@ export function useLullaby() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const indexRef = useRef(0);
 
+  const start = useCallback(() => {
+    if (playing) return;
+    toggle();
+  }, [playing, toggle]);
+
   const stop = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = null;
@@ -73,5 +78,5 @@ export function useLullaby() {
     void ctxRef.current?.close();
   }, []);
 
-  return { playing, toggle };
+  return { playing, toggle, start, stop };
 }
