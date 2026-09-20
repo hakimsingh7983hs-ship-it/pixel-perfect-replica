@@ -18,6 +18,5 @@ export default defineConfig({
     // Outside the Lovable sandbox, build a fully static site (no server runtime needed).
     // Inside the Lovable build environment this is overridden automatically.
     preset: "static",
-    output: { dir: ".output", publicDir: "dist" },
   },
 });
