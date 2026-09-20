@@ -68,6 +68,11 @@ export function useLullaby() {
     setPlaying(true);
   }, [playing, stop]);
 
+  /** Start the melody without toggling — used when the letter opens. */
+  const start = useCallback(() => {
+    if (!playing) toggle();
+  }, [playing, toggle]);
+
   useEffect(() => () => {
     if (timerRef.current) clearInterval(timerRef.current);
     void ctxRef.current?.close();
