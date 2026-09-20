@@ -48,7 +48,7 @@ export function useLullaby() {
 
     // Pluck one soft bell note of the melody
     const playNote = () => {
-      const semitone = MELODY[indexRef.current % MELODY.length];
+      const semitone = MELODY[indexRef.current % MELODY.length] ?? 0;
       indexRef.current += 1;
       const now = ctx.currentTime;
       const osc = ctx.createOscillator();
