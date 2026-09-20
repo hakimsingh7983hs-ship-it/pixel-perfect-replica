@@ -148,7 +148,151 @@
   }
 
   body {
+    /* Soft romantic gradient wash behind everything */
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(60% 45% at 15% 10%, oklch(0.93 0.06 350 / 0.85), transparent 70%),
+      radial-gradient(55% 40% at 88% 8%, oklch(0.94 0.05 60 / 0.8), transparent 70%),
+      radial-gradient(70% 55% at 50% 100%, oklch(0.93 0.05 20 / 0.7), transparent 75%);
+    background-attachment: fixed;
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+/* ---------- Gentle motion: floating hearts, sparkles, page transitions ---------- */
+@keyframes float-up {
+  0% {
+    transform: translate3d(0, 10vh, 0) scale(0.7) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(var(--drift, 2rem), -105vh, 0) scale(1.05) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes soft-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes soft-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-22px) scale(0.97);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift, 0px), 105vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-heart {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.15);
+  }
+}
+
+@utility animate-float-up {
+  animation: float-up var(--dur, 14s) linear infinite;
+}
+
+@utility animate-bob {
+  animation: bob 5s ease-in-out infinite;
+}
+
+@utility animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@utility animate-soft-in {
+  animation: soft-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-soft-out {
+  animation: soft-out 0.5s ease-in both;
+}
+
+@utility animate-confetti {
+  animation: confetti-fall var(--dur, 3.5s) linear forwards;
+}
+
+@utility animate-pulse-heart {
+  animation: pulse-heart 1.6s ease-in-out infinite;
+}
+
+@utility font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Paper-like letter surface */
+@utility letter-paper {
+  background-image:
+    linear-gradient(oklch(0.995 0.012 75 / 0.97), oklch(0.985 0.02 60 / 0.97)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2.15rem,
+      oklch(0.85 0.04 20 / 0.35) 2.15rem,
+      oklch(0.85 0.04 20 / 0.35) calc(2.15rem + 1px)
+    );
+  box-shadow:
+    0 30px 60px -25px oklch(0.55 0.12 15 / 0.35),
+    0 2px 0 oklch(1 0 0 / 0.6) inset;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
   }
 }
