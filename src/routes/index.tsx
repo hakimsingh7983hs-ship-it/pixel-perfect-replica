@@ -42,7 +42,7 @@ function SorryLetter() {
   const [leaving, setLeaving] = useState(false);
   const [forgiven, setForgiven] = useState<string | null>(null);
   const letterRef = useRef<HTMLDivElement>(null);
-  const { playing, toggle } = useLullaby();
+  const { playing, toggle, start } = useLullaby();
 
   // Smoothly move focus/scroll to the letter once the cover has transitioned out.
   useEffect(() => {
@@ -50,6 +50,7 @@ function SorryLetter() {
   }, [opened]);
 
   const openLetter = () => {
+    start(); // begin the melody right as the letter opens
     setLeaving(true);
     window.setTimeout(() => setOpened(true), 450);
   };
