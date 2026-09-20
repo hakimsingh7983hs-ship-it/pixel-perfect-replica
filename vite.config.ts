@@ -11,12 +11,5 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
-    // Pre-render "/" to static HTML at build time so the exported site is fully static.
-    prerender: { enabled: true, pages: [{ path: "/" }] },
-  },
-  nitro: {
-    // Outside the Lovable sandbox, build a fully static site (no server runtime needed).
-    // Inside the Lovable build environment this is overridden automatically.
-    preset: "static",
   },
 });
